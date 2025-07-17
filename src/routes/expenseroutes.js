@@ -1,0 +1,11 @@
+import express, { Router } from "express";
+import {expensecreate} from "../controller/expensecontroller.js";
+import { isLoggin } from "../middleware/authmiddleware.js";
+import upload from"../middleware/multermuddleware.js";
+import { expenseEdit } from "../controller/expensecontroller.js";
+import { deletexpense } from "../controller/expensecontroller.js";
+const router=express.Router();
+router.route("/create").post(isLoggin,expensecreate);
+router.route("/:titleId/create").post(isLoggin,upload.single("billimage"),expenseCreate);
+router.route("/expense/:expenseId").patch(isLoggin,expenseEdit).delete(isLoggin,deleteexpense);
+export default router;
